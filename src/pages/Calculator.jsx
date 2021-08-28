@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import "../pages/calculator.css"
 
 function Calculator() {
 
@@ -32,12 +33,30 @@ function Calculator() {
                     <div className="mt-8 " id="Select Tip %">
                         <h4 className={styling.title}>Select Tip %</h4>
                         <div className="grid grid-cols-3 gap-3">
-                            <button type="button" onClick={() => setActBtn(1)} className={`${styling.tipButton}` + ((actBtn === 1) ? " active" : "")}>5%</button>
-                            <button type="button" onClick={() => setActBtn(2)} className={styling.tipButton}>10%</button>
-                            <button type="button" onClick={() => setActBtn(3)} className={styling.tipButton}>15%</button>
-                            <button type="button" onClick={() => setActBtn(4)} className={styling.tipButton}>25%</button>
-                            <button type="button" onClick={() => setActBtn(5)} className={styling.tipButton}>50%</button>
-                            <button type="button" onClick={() => setActBtn(6)} className={`${styling.tipCustom}`}>Custom</button>
+                            <button
+                                type="button"
+                                onClick={() => ((actBtn === 1) ? setActBtn(0) : setActBtn(1))}
+                                className={`${styling.tipButton}` + ((actBtn === 1) ? " active" : "")}>5%</button>
+                            <button
+                                type="button"
+                                onClick={() => ((actBtn === 2) ? setActBtn(0) : setActBtn(2))}
+                                className={`${styling.tipButton}` + ((actBtn === 2) ? " active" : "")}>10%</button>
+                            <button
+                                type="button"
+                                onClick={() => ((actBtn === 3) ? setActBtn(0) : setActBtn(3))}
+                                className={`${styling.tipButton}` + ((actBtn === 3) ? " active" : "")}>15%</button>
+                            <button
+                                type="button"
+                                onClick={() => ((actBtn === 4) ? setActBtn(0) : setActBtn(4))}
+                                className={`${styling.tipButton}` + ((actBtn === 4) ? " active" : "")}>25%</button>
+                            <button
+                                type="button"
+                                onClick={() => ((actBtn === 5) ? setActBtn(0) : setActBtn(5))}
+                                className={`${styling.tipButton}` + ((actBtn === 5) ? " active" : "")}>50%</button>
+                            <button
+                                type="button"
+                                onClick={() => ((actBtn === 6) ? setActBtn(0) : setActBtn(6))}
+                                className={`${styling.tipButton}` + ((actBtn === 6) ? " active" : "")}>Custom</button>
 
                         </div>
                     </div>
