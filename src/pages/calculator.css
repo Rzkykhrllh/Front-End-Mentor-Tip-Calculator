@@ -1,5 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
 
-.active{
-    @apply bg-green-500 text-green-700
+.active {
+  @apply text-green-700 bg-green-500;
+}
+
+input {
+  outline: none;
 }

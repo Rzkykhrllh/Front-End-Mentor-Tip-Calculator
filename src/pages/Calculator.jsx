@@ -3,11 +3,34 @@ import "../pages/calculator.css"
 
 function Calculator() {
 
+    // whic button is active
     const [actBtn, setActBtn] = useState(0)
+
+    // input price and person
+    const [price, setPrice] = useState(0);
+    const [person, setPerson] = useState(0);
 
     useEffect(() => {
         console.log(actBtn)
     }, [actBtn])
+
+    // replace string input
+    function txtNum(e, dest) {
+        const angka = e.target.value.replace(/\D/g,"");
+        if (dest==="harga"){
+            setPrice(angka)
+            console.log(`price updated ${angka}`)
+        } else{
+            setPerson(angka)
+            console.log(`person updated ${angka}`)
+        }
+    }
+    
+    function updateHarga(e){
+        
+    }
+
+
 
     return (
         <section className="flex min-h-screen bg-green-100 ">
@@ -18,12 +41,26 @@ function Calculator() {
                 {/* start of kiri */}
                 <div id="kiri"
                     className="flex-initial h-5 h-full text-left">
+
+
                     {/* start of bill input */}
                     <div id="bill" className={styling.title}>
                         <h4>Bill</h4>
                         <div id="inputbar" className="flex justify-between px-4 py-2 mt-1 text-2xl bg-gray-100 rounded">
                             <p className="text-gray-200">$</p>
-                            <p className="font-bold text-green-700">214</p>
+
+                            {/* start of form */}
+                            <form>
+                                <input 
+                                    type="tel" pattern="^-?[0-9]\d*\.?\d*$"
+                                    className="font-bold text-right text-green-700 bg-gray-100 border-none"
+                                    onChange={(e) => txtNum(e,"harga")}
+                                    value={price}
+
+                                    />
+                                {/* <p className="font-bold text-green-700"></p> */}
+                            </form>
+                            {/* end of form */}
 
                         </div>
                     </div>
@@ -63,15 +100,28 @@ function Calculator() {
                     {/* end of select input */}
 
                     {/* start of person input */}
-                    <div id="person" className="mt-8">
-                        <h4 className={styling.title}>Person</h4>
+                    <div id="person" className={styling.title}>
+                        <h4>Person</h4>
                         <div id="inputbar" className="flex justify-between px-4 py-2 mt-1 text-2xl bg-gray-100 rounded">
                             <p className="text-gray-200">$</p>
-                            <p className="font-bold text-green-700">214</p>
+
+                            {/* start of form */}
+                            <form>
+                                <input 
+                                    type="tel" pattern="^-?[0-9]\d*\.?\d*$"
+                                    className="font-bold text-right text-green-700 bg-gray-100 border-none"
+                                    onChange={txtNum}
+                                    value={person}
+
+                                    />
+                                {/* <p className="font-bold text-green-700"></p> */}
+                            </form>
+                            {/* end of form */}
 
                         </div>
                     </div>
                     {/* end of person input */}
+
                 </div>
                 {/* end of kiri */}
 
@@ -88,10 +138,10 @@ function Calculator() {
                             </div>
                         </div>
 
-                        <div id="teks2">
+                        <div id="teks2" className="mt-10">
                             <div className="flex justify-between ">
                                 <div>
-                                    <h4 className="font-bold text-white">Tip Ammount</h4>
+                                    <h4 className="font-bold text-white">Total</h4>
                                     <p className="text-left text-gray-400 ">/ peson</p>
                                 </div>
                                 <p className={styling.output}>$1.23</p>
@@ -115,7 +165,7 @@ export default Calculator
 
 const styling = {
     output: `text-green-500 text-4xl font-bold`,
-    tipButton: `font-bold text-white bg-green-700 py-2 text-2xl text-center rounded active:bg-green-500 active:text-color-700`,
-    tipCustom: `font-bold text-gray-300 bg-gray-100 py-2 text-2xl text-center rounded active:bg-green-500 active:text-color-700`,
+    tipButton: `font-bold text-white bg-green-700 py-2 text-2xl text-center rounded`,
+    tipCustom: `font-bold text-gray-300 bg-gray-100 py-2 text-2xl text-center rounded`,
     title: "text-gray-300"
 }
