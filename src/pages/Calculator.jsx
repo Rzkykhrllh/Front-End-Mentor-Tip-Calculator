@@ -1,18 +1,33 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import "../pages/calculator.css"
 
 function Calculator() {
 
-    // whic button is active
+    // which button is active
     const [actBtn, setActBtn] = useState(0)
 
-    // input price and person
+    // input price and person and custom Tip
     const [price, setPrice] = useState(0);
     const [person, setPerson] = useState(0);
+    const [custom, setCustom] = useState(0);
 
-    // Output
+    // Output Variable
     const [tipPerPerson, setTip] = useState(0)
     const [totalPerPerson, setTotal] = useState(0)
+
+    // Measure width and height of button tip
+    // const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+    // const targetRef = useRef();
+    // useEffect(() => {
+    //     if (targetRef.current) {
+    //         setDimensions({
+    //             width: targetRef.current.offsetWidth,
+    //             height: targetRef.current.offsetHeight
+    //         });
+    //     }
+    //     console.log(`height : ${dimensions.height} & width : ${dimensions.width}`)
+    // }, [actBtn]);
+
 
     useEffect(() => {
         console.log(actBtn)
@@ -20,23 +35,25 @@ function Calculator() {
 
     }, [actBtn, price, person])
 
-    // useEffect(()=> {
-        
-    // }[setTip])
 
     // replace string input
     function txtNum(e, dest) {
         const angka = e.target.value.replace(/\D/g,"");
-        if (dest==="harga"){
+        if (dest==="price"){
             setPrice(angka)
             console.log(`price updated ${angka}`)
-        } else{
+        } else if(dest==="person"){
             setPerson(angka)
             console.log(`person updated ${angka}`)
+        } else{
+            setCustom(angka)
+            console.log(`custom updated ${angka}`)
+
         }
 
     }
     
+    // calculate the value of tip
     function calculate(){
         console.log("im here")
         
@@ -49,6 +66,10 @@ function Calculator() {
                 case 3 : {tip=0.15; break}
                 case 4 : {tip=0.25; break}
                 case 5 : {tip=0.5; break}
+                case 6 : {
+                    tip=custom/100;
+                    break;
+                }
                 default : {tip=0; break}
             }
 
@@ -86,18 +107,18 @@ function Calculator() {
                         <div id="inputbar" className="flex justify-between px-4 py-2 mt-1 text-2xl bg-gray-100 rounded">
                             <p className="text-gray-200">$</p>
 
-                            {/* start of form */}
+                            {/* start of bill form */}
                             <form>
                                 <input 
                                     type="tel" pattern="^-?[0-9]\d*\.?\d*$"
                                     className="w-full font-bold text-right text-green-700 bg-gray-100 border-none"
-                                    onChange={(e) => txtNum(e,"harga")}
+                                    onChange={(e) => txtNum(e,"price")}
                                     value={price}
 
                                     />
                                 {/* <p className="font-bold text-green-700"></p> */}
                             </form>
-                            {/* end of form */}
+                            {/* end of bill form */}
 
                         </div>
                     </div>
@@ -124,13 +145,30 @@ function Calculator() {
                                 onClick={() => ((actBtn === 4) ? setActBtn(0) : setActBtn(4))}
                                 className={`${styling.tipButton}` + ((actBtn === 4) ? " active" : "")}>25%</button>
                             <button
+                                // ref={targetRef}
                                 type="button"
                                 onClick={() => ((actBtn === 5) ? setActBtn(0) : setActBtn(5))}
-                                className={`${styling.tipButton}` + ((actBtn === 5) ? " active" : "")}>50%</button>
-                            <button
-                                type="button"
-                                onClick={() => ((actBtn === 6) ? setActBtn(0) : setActBtn(6))}
-                                className={`${styling.tipButton}` + ((actBtn === 6) ? " active" : "")}>Custom</button>
+                                className={`${styling.tipButton}` + ((actBtn === 5) ? " active" : "") }>50%</button>
+                                
+                           
+                           {/* start custom input */}
+                            <button type="button" className={`${styling.tipCustom} px-3` + ((actBtn === 6) ? " active" : "")} 
+                            onClick={() => ((actBtn === 6) ? setActBtn(0) : setActBtn(6))}>
+                                
+                                <form>
+                                <input 
+                                    type="tel" pattern="^-?[0-9]\d*\.?\d*$"
+                                    className={`
+                                    font-bold text-right text-green-700  border-none text-center bg-transparent
+                                    `   }
+                                    onChange={(e) => txtNum(e,"custom")}
+                                    value={custom + "%"}
+                                    style={{width:100}}
+                                    
+                                />
+                            </form>
+                            </button>
+                            {/* end of custom input */}
 
                         </div>
                     </div>
@@ -147,7 +185,7 @@ function Calculator() {
                                 <input 
                                     type="tel" pattern="^-?[0-9]\d*\.?\d*$"
                                     className="w-full font-bold text-right text-green-700 bg-gray-100 border-none"
-                                    onChange={txtNum}
+                                    onChange={(e) => txtNum(e,"person")}
                                     value={person}
 
                                     />
@@ -177,7 +215,7 @@ function Calculator() {
 
                         <div id="teks2" className="mt-10">
                             <div className="flex justify-between ">
-                                <div className="min-w-100px h-min-h">
+                                <div className="min-w-100px min-h">
                                     <h4 className="font-bold text-left text-white">Total</h4>
                                     <p className="text-left text-gray-400">/ peson</p>
                                 </div>
@@ -206,3 +244,5 @@ const styling = {
     tipCustom: `font-bold text-gray-300 bg-gray-100 py-2 text-2xl text-center rounded`,
     title: "text-gray-300"
 }
+
+

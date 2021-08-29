@@ -4,6 +4,10 @@
   @apply text-green-700 bg-green-500;
 }
 
+.activeCustom {
+  @apply text-green-700 bg-green-400;
+}
+
 input {
   outline: none;
 }
