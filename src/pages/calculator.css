@@ -7,3 +7,30 @@
 input {
   outline: none;
 }
+
+.min-w-100px {
+  min-width: 100px;
+}
+
+/* scroll bar thingy */
+/* width */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 3px;
+  /* display: none; */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: #26c2ad;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

@@ -54,8 +54,8 @@ function Calculator() {
 
             const totalPrice = (1+tip)*price
 
-            const tipPerson = (tip*price)/person
-            const totalPerson = totalPrice/person
+            const tipPerson = Number(((tip*price)/person).toFixed(2))
+            const totalPerson = Number((totalPrice/person).toFixed(2))
 
             console.log(`${1+tip} ${totalPrice}`)
 
@@ -164,24 +164,24 @@ function Calculator() {
 
                 {/* start of kanan */}
                 <div id="kanan" className="">
-                    <div className="flex flex-col h-full bg-white bg-green-700 p-9 md:w-80 rounded-2xl" id="bg-kanan">
+                    <div className="flex flex-col h-full min-w-full bg-white bg-green-700 w-80 p-9 rounded-2xl" id="bg-kanan">
                         <div id="teks1">
                             <div className="flex justify-between ">
-                                <div>
-                                    <h4 className="font-bold text-white">Tip Ammount</h4>
+                                <div className="min-w-100px">
+                                    <h4 className="font-bold text-left text-white ">Tip Ammount</h4>
                                     <p className="text-left text-gray-400 ">/ peson</p>
                                 </div>
-                                {/* <p className={styling.output}>${this.tipPerson}</p> */}
+                                <p className={styling.output}>${tipPerPerson}</p>
                             </div>
                         </div>
 
                         <div id="teks2" className="mt-10">
                             <div className="flex justify-between ">
-                                <div>
-                                    <h4 className="font-bold text-white">Total</h4>
-                                    <p className="text-left text-gray-400 ">/ peson</p>
+                                <div className="min-w-100px h-min-h">
+                                    <h4 className="font-bold text-left text-white">Total</h4>
+                                    <p className="text-left text-gray-400">/ peson</p>
                                 </div>
-                                <p className={styling.output}>$1.23</p>
+                                <p className={styling.output}>${totalPerPerson}</p>
                             </div>
                         </div>
                         <div className="mt-10 bg-green-500 rounded-lg md:mt-auto justify-self-end">
@@ -201,7 +201,7 @@ function Calculator() {
 export default Calculator
 
 const styling = {
-    output: `text-green-500 text-4xl font-bold`,
+    output: `text-green-500 text-4xl font-bold overflow-auto`,
     tipButton: `font-bold text-white bg-green-700 py-2 text-2xl text-center rounded`,
     tipCustom: `font-bold text-gray-300 bg-gray-100 py-2 text-2xl text-center rounded`,
     title: "text-gray-300"
