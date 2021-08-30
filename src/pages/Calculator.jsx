@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import "../pages/calculator.css"
+import { BsFillPersonFill } from 'react-icons/bs';
 
 function Calculator() {
 
@@ -14,18 +15,6 @@ function Calculator() {
     // Output Variable
     const [tipPerPerson, setTip] = useState(0)
     const [totalPerPerson, setTotal] = useState(0)
-
-    // Measure width and height of button tip
-    // const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-    // const targetRef = useRef();
-    // useEffect(() => {
-    //     if (targetRef.current) {
-    //         setDimensions({
-    //             width: targetRef.current.offsetWidth,
-    //             height: targetRef.current.offsetHeight
-    //         });
-    //     }
-    //     console.log(`height : ${dimensions.height} & width : ${dimensions.width}`)
     // }, [actBtn]);
 
 
@@ -88,6 +77,17 @@ function Calculator() {
         }
     }
 
+    // reset everything, like tva
+    function prune(){
+        console.log("prune")
+        setActBtn(0)
+        setPrice(0)
+        setPerson(0)
+        setCustom(0)
+        setTip(0)
+        setTotal(0)
+    }
+
 
 
     return (
@@ -145,7 +145,6 @@ function Calculator() {
                                 onClick={() => ((actBtn === 4) ? setActBtn(0) : setActBtn(4))}
                                 className={`${styling.tipButton}` + ((actBtn === 4) ? " active" : "")}>25%</button>
                             <button
-                                // ref={targetRef}
                                 type="button"
                                 onClick={() => ((actBtn === 5) ? setActBtn(0) : setActBtn(5))}
                                 className={`${styling.tipButton}` + ((actBtn === 5) ? " active" : "") }>50%</button>
@@ -178,7 +177,7 @@ function Calculator() {
                     <div id="person" className="mt-8">
                         <h4 className={styling.title}>Person</h4>
                         <div id="inputbar" className="flex justify-between px-4 py-2 mt-1 text-2xl bg-gray-100 rounded">
-                            <p className="text-gray-200">$</p>
+                            <p className="text-gray-200"><BsFillPersonFill/></p>
 
                             {/* start of form */}
                             <form>
@@ -222,9 +221,12 @@ function Calculator() {
                                 <p className={styling.output}>${totalPerPerson}</p>
                             </div>
                         </div>
-                        <div className="mt-10 bg-green-500 rounded-lg md:mt-auto justify-self-end">
-                            <button className="py-3 text-green-700 ">RESET</button>
-                        </div>
+                        <button 
+                        className="py-3 mt-10 text-green-700 bg-green-500 rounded-lg md:mt-auto justify-self-end"
+                        onClick={prune}
+                        type="button">
+                            RESET
+                        </button>
 
                     </div>
                 </div>
