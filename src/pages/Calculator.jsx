@@ -91,10 +91,13 @@ function Calculator() {
 
 
     return (
-        <section className="flex min-h-screen bg-green-100 ">
+        <section className="flex max-h-full min-h-screen bg-green-100 ">
+
+
             {/* nm-auto yg bikin ke tengah */}
             <div id="main"
-                className="grid grid-cols-1 gap-8 p-8 m-auto mt-32 bg-white md:grid-cols-2 rounded-t-2xl md:rounded-b-2xl">
+                className="grid grid-cols-1 gap-8 p-8 mx-auto mt-32 bg-white md:m-auto md:grid-cols-2 rounded-t-2xl md:rounded-b-2xl">
+
 
                 {/* start of kiri */}
                 <div id="kiri"
